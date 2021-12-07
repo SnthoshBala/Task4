@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity() {
                     val myStringBuilder = StringBuilder()
                     for (myData in decodedBook) {
                             if (author.toString() == myData.author && country.toString() == myData.country) {
-                                count++
                                 if(count<3) {
                                     myStringBuilder.append("Result : "+myData.title)
                                     myStringBuilder.append("\n")
                                 }
+                                count++
                             }
                     }
                     bookData.text = "Results : "+count+"\n$myStringBuilder"
