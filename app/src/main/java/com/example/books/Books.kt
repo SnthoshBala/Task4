@@ -1,7 +1,5 @@
 package com.example.books
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
 data class Books(
     val author: String="",
     val country: String="",
@@ -10,4 +8,5 @@ data class Books(
     val link: String="",
     val pages: Int=0,
     val title: String="",
-    val year: Int=0)
+    val year: Int=0
+)

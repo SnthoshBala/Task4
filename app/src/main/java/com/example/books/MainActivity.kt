@@ -2,7 +2,6 @@ package com.example.books
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputLayout
@@ -10,9 +9,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
@@ -32,17 +28,18 @@ class MainActivity : AppCompatActivity() {
 
             CoroutineScope(Dispatchers.IO).launch {
                 val decodedBook=bookService.getBooks()
+
                 withContext(Dispatchers.Main)
                 {
                     val myStringBuilder = StringBuilder()
                     for (myData in decodedBook) {
-                        if(count<3) {
                             if (author.toString() == myData.author && country.toString() == myData.country) {
-                                myStringBuilder.append("Result : "+myData.title)
-                                myStringBuilder.append("\n")
                                 count++
+                                if(count<3) {
+                                    myStringBuilder.append("Result : "+myData.title)
+                                    myStringBuilder.append("\n")
+                                }
                             }
-                        }
                     }
                     bookData.text = "Results : "+count+"\n$myStringBuilder"
 
